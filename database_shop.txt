@@ -1,0 +1,116 @@
+Bảng : users (
+-------------------------------------------
+id int not null auto_increment primary key,
+username varchar(255),
+email varchar(255),
+password varchar(255),
+image varchar(255),
+date_of_birth varchar(200),
+hometown varchar(255),
+gender enum('male','female'),
+activation_code varchar(100),
+status enum('verified','not verified')
+created_at datetim
+);
+-------------------------------------------
+Bảng : galleries (
+-------------------------------------------
+id int not null auto_increment primary key,
+user_id int not null,
+image varchar(255),
+created_at datetime
+);
+--------------------------------------------
+Bảng :category_products (
+--------------------------------------------
+id int not null auto_increment primary key,
+name varchar(200),
+created_at datetime 
+);
+--------------------------------------------
+Bảng : products (
+--------------------------------------------
+id int not null auto_increment primary key,
+category_product_id int not null foreign key,
+name varchar(200),
+description text,
+old_price double(10,2),
+new_price double(10,2),
+quantity int,
+origin varchar(200),
+guarantee varchar(200),
+trademark varchar(200),
+image varchar(255),
+created_at datetime,
+);
+------------------------------------------
+Bảng :product_images (
+------------------------------------------
+id int not null auto_increment primary key,
+image varchar(255),
+created_at datetime
+);
+------------------------------------------
+Bảng :orders (
+------------------------------------------
+id int not null auto_increment primary key,
+user_id int not null,
+product_id int not null,
+category_product_id int not null,
+number int,
+total_amount double(10,2),
+transaction varchar(200)
+card_cvv varchar(100),
+card_expiry_month varchar(50),
+card_expiry_year varchar(50),
+created_at datetime
+);
+-----------------------------------------
+-----------------------------------------
+Bảng :likes (
+-----------------------------------------
+id int not null auto_increment primary key,
+user_id not null,
+product_id not null,
+status enum('link','unlike'),
+datetime datetime
+);
+-----------------------------------------
+Bảng :ratings (
+-----------------------------------------
+id int not null auto_increment primary key,
+user_id int not null,
+product_id int not null,
+datetime datetime
+);
+-----------------------------------------
+Bảng :comments(
+-----------------------------------------
+id int not null auto_increment primary key,
+user_id int not null,
+product_id int not null,
+content text,
+datetime datetime,
+);
+------------------------------------------
+Bảng :menus(
+------------------------------------------
+id int not null auto_increment primary key,
+parent_id int not null,
+name varchar(255),
+created_at datetime
+);
+------------------------------------------
+Bảng notifications (
+ int not null auto_ecrement primary key,
+ received_id int not null,
+ sender_id int not null,
+ datetime datetime
+);
+------------------------------------------
+Bảng slide (
+int not null auto_increment primary key,
+title varchar(255),
+image varchar(255),
+alt varchar(255)
+);
